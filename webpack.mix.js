@@ -1,5 +1,3 @@
-let mix = require('laravel-mix');
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,9 +9,14 @@ let mix = require('laravel-mix');
  |
  */
 
+let mix = require('laravel-mix');
+const tailwindcss = require('tailwindcss');
+
+
 mix
 .options({
     processCssUrls: false,
+    postCss: [tailwindcss('./tailwind.config.js')],
 })
 .js('src/app.js', 'dist/')
 .sass('src/app.scss', 'dist/');
@@ -22,6 +25,12 @@ mix.browserSync({
     proxy: "http://laravelmix.local/",
     files: ["./**/*"],
 });
+
+
+
+
+
+
 
 // Full API
 // mix.js(src, output);
